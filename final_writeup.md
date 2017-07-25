@@ -97,10 +97,12 @@ The final model architecture (model.py lines 31-46) consisted of a convolution n
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
 [image2]: ./model_summary.png "Model Summary"
+![image2]
 
 "Revised model with Dropout layers"
 
 [image3]: ./model_summary_revised.png "Revised Model Summary"
+![image3]
 
 
 ####3. Creation of the Training Set & Training Process
@@ -108,8 +110,15 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 To capture good driving behavior, I first recorded three laps in both directions (clockwise, counterclockwise) on track one using center lane driving. Here is an example image of center lane driving:
 
 [image4]: ./report_img/left.png "Left Image"
+![image4]
+
+
 [image5]: ./report_img/right.png "Right Image"
+![image5]
+
+
 [image6]: ./report_img/center.png "Center Image"
+![image6]
 
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to adjust itself back on to the center
@@ -136,3 +145,5 @@ I used an adam optimizer so that manually training the learning rate wasn't nece
 The loss and validation loss plot after training 
 
 [image7]: ./report_img/loss_plot.png "Left Image"
+
+![image7]

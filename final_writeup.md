@@ -2,7 +2,7 @@
 
 ---
 
-<img src="report_img/title_image.png" width="480" alt="Combined Image" />
+[image1]: report_img/title_image.png "Behavioral Cloning"
 
 **Behavioral Cloning Project**
 

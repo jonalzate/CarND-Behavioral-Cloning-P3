@@ -57,6 +57,7 @@ I decided to implement the End-to-End model from NVIDIA because it seemed to be 
  
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 28). 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+To reduce overfitting the model implements couple of Dropout layers after each convolution layer (lines 35-53)
 
 ####3. Model parameter tuning
 
@@ -95,14 +96,18 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 [image2]: ./model_summary.png "Model Summary"
 
+"Revised model with Dropout layers"
+
+[image3]: ./model_summary_revised.png "Revised Model Summary"
+
 
 ####3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded three laps in both directions (clockwise, counterclockwise) on track one using center lane driving. Here is an example image of center lane driving:
 
-[image3]: ./report_img/left.png "Left Image"
-[image4]: ./report_img/right.png "Right Image"
-[image5]: ./report_img/center.png "Center Image"
+[image4]: ./report_img/left.png "Left Image"
+[image5]: ./report_img/right.png "Right Image"
+[image6]: ./report_img/center.png "Center Image"
 
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to adjust itself back on to the center
@@ -128,4 +133,4 @@ I used an adam optimizer so that manually training the learning rate wasn't nece
 
 The loss and validation loss plot after training 
 
-[image6]: ./report_img/loss_plot.png "Left Image"
+[image7]: ./report_img/loss_plot.png "Left Image"

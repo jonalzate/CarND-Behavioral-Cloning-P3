@@ -121,10 +121,17 @@ nb_val_samples = len(images_validation)
 generator_validation = generate_batches(images_validation, angles_validation, augment=False)
 
 # Generator callbacks (TensorBoard, CSVLogger)
+<<<<<<< HEAD
 tensorboard = TensorBoard(log_dir='./model_tensorboard', histogram_freq=1, 
                           write_graph=True, write_images=True)
 
 csv_logger = CSVLogger('model_log.csv', append=True, separator=';')
+=======
+tensorboard = TensorBoard(log_dir='./nvidia_tensorboard', histogram_freq=1, 
+                          write_graph=True, write_images=True)
+
+csv_logger = CSVLogger('nvidia_log.csv', append=True, separator=';')
+>>>>>>> 9aa4d4960973952830d3f459fbec464ac85301d9
 
 callbacksList = [tensorboard, csv_logger]
 
@@ -135,17 +142,29 @@ history = model.fit_generator(
 
 # plot model and save to file
 #plot(model, to_file='model_nvidia.png')
+<<<<<<< HEAD
 model.save('model.h5')
+=======
+model.save('nvidia_gitbased.h5')
+>>>>>>> 9aa4d4960973952830d3f459fbec464ac85301d9
 
 # Save the generated model and weights.
 # Save model as json file
 json_string = model.to_json()
 
+<<<<<<< HEAD
 with open('model.json', 'w') as outfile:
     json.dump(json_string, outfile)
     
     # save weights
     model.save_weights('./model_weights.h5')
+=======
+with open('nvidia_gitbased.json', 'w') as outfile:
+    json.dump(json_string, outfile)
+    
+    # save weights
+    model.save_weights('./nvidia_gitbased_weights.h5')
+>>>>>>> 9aa4d4960973952830d3f459fbec464ac85301d9
     print("Saved")
     
 
@@ -156,4 +175,8 @@ plt.title('Model Mean-Squared Error Loss')
 plt.ylabel('Mean-Squared Error Loss')
 plt.xlabel('Epoch')
 plt.legend(['Training Set', 'Validation Set'], loc='upper right')
+<<<<<<< HEAD
 plt.savefig('model_plot')
+=======
+plt.savefig('nvidia_plot')
+>>>>>>> 9aa4d4960973952830d3f459fbec464ac85301d9

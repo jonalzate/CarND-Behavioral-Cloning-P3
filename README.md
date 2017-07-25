@@ -3,8 +3,7 @@
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-[image1]: report_img/title_image.png "Behavioral Cloning"
-
+<img src="report_img/title_image.png" width="480" alt="Combined Image" />
 
 Overview
 ---

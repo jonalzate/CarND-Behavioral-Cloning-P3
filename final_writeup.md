@@ -29,7 +29,8 @@ The goals / steps of this project are the following:
 
 
 
-## Rubric Points
+## Rubric Points 
+
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
@@ -53,7 +54,7 @@ python drive.py model.h5
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline used for training and validating the model, and it contains comments to explain how the code works.
 
-
+---
 
 ### Model Architecture and Training Strategy
 
@@ -104,10 +105,13 @@ The final model architecture (model.py lines 31-46) consisted of a convolution n
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
+*Model Architecture*
+
 ![image2]
 
-"Revised model with Dropout layers"
+**Revised model with Dropout layers**
 
+*Revised Model Architecture*
 
 ![image3]
 
@@ -116,10 +120,15 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 To capture good driving behavior, I first recorded three laps in both directions (clockwise, counterclockwise) on track one using center lane driving. Here is an example image of center lane driving:
 
+*Left View*
 
 ![image4]
 
+*Center View*
+
 ![image5]
+
+*Right View*
 
 ![image6]
 
@@ -145,7 +154,8 @@ I used this training data for training the model. The validation set helped dete
 The ideal number of epochs was 7-10 as evidenced by the loss and validation loss not having any improvements after 10 epochs
 I used an adam optimizer so that manually training the learning rate wasn't necessary, but I still left the option open to set a tunable learning rate.
 
-**Loss Plot**
+### Loss Plot
+
 The loss and validation loss plot after training 
 
 ![image7]

@@ -25,7 +25,7 @@ images = data[['Center Image', 'Left Image', 'Right Image']]
 angles = data['Steering Angle']
 
 # Split the data into training and validation sets.
-images_train, images_validation, angles_train, angles_validation = train_test_split(images, angles, test_size=0.15, random_state=42)
+images_train, images_validation, angles_train, angles_validation = train_test_split(images, angles, test_size=0.2, random_state=42)
 
 # Define the model
 model = Sequential()
@@ -45,10 +45,8 @@ model.add(Convolution2D(64,3,3,border_mode='valid', activation='relu', subsample
 model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(1164, activation='relu'))
-model.add(Dropout(0.2))
 model.add(Dense(100, activation='relu'))
 model.add(Dense(50, activation='relu'))
-model.add(Dropout(0.2))
 model.add(Dense(10, activation='relu'))
 model.add(Dense(1, activation='tanh'))
 
@@ -58,7 +56,7 @@ model.summary()
 optimizer = Adam(lr=0.0001)
 model.compile(loss='mse', optimizer='adam')
 
-# Helper to load an normalize images.
+# Helper to load images.
 def load_image(path, flip=False):
     # get local path to file
     filename = path.split('/')[-1]
@@ -66,13 +64,17 @@ def load_image(path, flip=False):
     
     # Read the image from disk, and flip it if requested.
     image = cv2.imread(local_path)
+    # conver from BGR to RGB
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    
     if flip:
         image = cv2.flip(image, 1)
     
     # Return the normalized image.
     return image
 
-# Data generator.
+# Data generator. Takes the path to images and steering angle
+# loads the image and converts to RGB.
 def generate_batches(images, angles, batch_size=64, augment=True):
     # Create an array of sample indexes.
     indexes = np.arange(len(images))
@@ -121,17 +123,17 @@ def generate_batches(images, angles, batch_size=64, augment=True):
                 batch_angles = []
 
 # Instantiate data generators for training and validation.
-nb_epoch = 5
+nb_epoch = 10
 samples_per_epoch = 4 * len(images_train)
 generator_train = generate_batches(images_train, angles_train)
 nb_val_samples = len(images_validation)
 generator_validation = generate_batches(images_validation, angles_validation, augment=False)
 
 # Generator callbacks (TensorBoard, CSVLogger)
-tensorboard = TensorBoard(log_dir='./revised_model_tensorboard', histogram_freq=1, 
+tensorboard = TensorBoard(log_dir='./nvidia__revised_tensorboard', histogram_freq=1, 
                           write_graph=True, write_images=True)
 
-csv_logger = CSVLogger('revised_model_log.csv', append=True, separator=';')
+csv_logger = CSVLogger('nvidia_revised_log.csv', append=True, separator=';')
 
 callbacksList = [tensorboard, csv_logger]
 
@@ -141,17 +143,17 @@ history = model.fit_generator(
     validation_data=generator_validation, nb_val_samples=nb_val_samples, callbacks=callbacksList)
 
 # plot model and save to 
-model.save('revised_model.h5')
+model.save('nvidia_model_revised.h5')
 
 # Save the generated model and weights.
 # Save model as json file
 json_string = model.to_json()
 
-with open('revised_model.json', 'w') as outfile:
+with open('nvidia_model_revised.json', 'w') as outfile:
     json.dump(json_string, outfile)
     
     # save weights
-    model.save_weights('./revised_model_weights.h5')
+    model.save_weights('./nvidia_weights_revised.h5')
     print("Saved")
     
 
